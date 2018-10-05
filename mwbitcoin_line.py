@@ -90,8 +90,11 @@ if __name__ == '__main__':
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
 
-    chrome_driver = './config/chromedriver.exe'
-
+    if os.name == 'nt':
+        chrome_driver = './config/chromedriver.exe'
+    else:
+        chrome_driver = './config/chromedriver'
+        
     browser = webdriver.Chrome(options=chrome_options, executable_path=chrome_driver)
     browser.get(login_page)
 
