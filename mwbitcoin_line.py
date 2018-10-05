@@ -44,8 +44,8 @@ def line_notify_h1(current_bid_val):
     print(r.text)
 
 
-def line_notify_volatility():
-    msg = 'โวมาจ้าาาา'
+def line_notify_volatility(current_bid_val):
+    msg = 'ดิ้นดุ๊กดิ๊ก ' + current_bid_val
     r = requests.post(url, headers=headers , data = {'message':msg})
     print(r.text)
 
@@ -144,14 +144,12 @@ if __name__ == '__main__':
         """ end diffchkpoint """
 
         """ begin check volatility """
-        bv5 = bv4
-        bv4 = bv3
         bv3 = bv2
         bv2 = bv1
         bv1 = bid_value
 
-        if( (bv1 != bv2) and (bv2 != bv3) and (bv3 != bv4) and (bv4 != bv5) ):
-            line_notify_volatility
+        if( (bv1 != bv2) and (bv2 != bv3) ):
+            line_notify_volatility(current_bid_value)
         """ end check volatility """
 
         """ begin Hr announce """
